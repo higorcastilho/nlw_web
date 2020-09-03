@@ -10,7 +10,7 @@ import Select from '../../components/Select'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-import api from '../../services/api'
+//import api from '../../services/api'
 
 import './styles.css'
 
