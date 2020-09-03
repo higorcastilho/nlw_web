@@ -28,7 +28,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
 				<div className="header-content-footer">
 					{ props.description && <p>{props.description}</p> }
 					{ props.emoji &&	<div id="emoji-corner">
-											<img src={props.emoji}/>
+											<img src={props.emoji} alt="Rocket emoji"/>
 											<p>{props.emojiText}</p>
 										</div> 
 					}

@@ -1,8 +1,6 @@
-import { FormEvent } from 'react'
-
 import api from '../services/api'
 import jwtDecode from '../services/jwtDecode'
-import { isAuthenticated, getToken, logout } from '../services/auth'
+import { isAuthenticated, getToken } from '../services/auth'
 
 interface Response {
 	userId: number

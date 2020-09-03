@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch, Redirect, RouteProps } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, RouteProps } from 'react-router-dom'
 
 import { isAuthenticated } from './services/auth'
 

@@ -35,7 +35,7 @@ function TeacherList() {
 	const [yPos, setYPos] = useState(0)
 
 	const [page, setPage] = useState(1)
-	const [limit, setLimit] = useState(3)
+	const [limit] = useState(3)
 	const [totalClasses, setTotalClasses] = useState(0)
 
 	const [ subject, setSubject ] = useState('') 
@@ -48,7 +48,7 @@ function TeacherList() {
 			return 
 		}
 
-		window.scrollTo(500, 500)
+		window.scrollTo(xPos, yPos)
 		setPage(page - 1)
 	}
 
@@ -57,7 +57,7 @@ function TeacherList() {
 		if (page === Math.ceil(totalClasses / limit)) {
 			return
 		}
-		window.scrollTo(500, 500)
+		window.scrollTo(xPos, yPos)
 		setPage(page + 1)
 	}
 
@@ -90,7 +90,6 @@ function TeacherList() {
 			const data = handleShowAllTeachers(page, limit)
 			data.then( res => {
 				setTeachers(res)
-				console.log(res)
 				setTotalClasses(res[0].total)
 			})
 

@@ -1,9 +1,7 @@
-import React, { useState, FormEvent, useContext, useEffect } from 'react'
+import React, { useState, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { Context } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 import api from '../../services/api'
-
 
 import Input from '../../components/Input'
 import CommonCase from '../../components/CommonCase'
@@ -13,9 +11,6 @@ import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons"
 
 import './styles.css'
 import logoImg from '../../assets/images/logo.svg'
-
-import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
-import successCheck from '../../assets/images/icons/success-check-icon.svg'
 
 function ForgotPassword() { 
 	
@@ -27,18 +22,13 @@ function ForgotPassword() {
 	const [ letterCollor, setLetterColor ] = useState('#9c98a6')
 
 	function handleButtonColor() {
-		if(email != '') {
+		if(email !== '') {
 			setButtonColor('#04d361')
 			setLetterColor('#ffffff')
 		} else if ( email === '') {
 			setButtonColor('#dcdce5')
 			setLetterColor('#9c98a6')
 		}
-	}
-
-	function handleIsChecked() {
-		if (isChecked) setIsChecked(false)
-		else setIsChecked(true)
 	}
 
 	async function handleForgotPassword(e: FormEvent) {

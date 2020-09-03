@@ -1,5 +1,3 @@
-import { FormEvent } from 'react'
-
 import api from '../services/api'
 import jwtDecode from '../services/jwtDecode'
 import { login } from '../services/auth'
@@ -15,7 +13,7 @@ export default function handleLogin(email:string, password:string):Promise<Respo
 			password
 		}).then( res => {
 			const token = res.data.token
-			const userId = jwtDecode(token)
+			//const userId = jwtDecode(token) commented to deploy
 
 			if (token === undefined) {
 				throw new Error('Invalid token');

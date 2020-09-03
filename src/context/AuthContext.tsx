@@ -1,4 +1,4 @@
-import React, { createContext, useState, FormEvent } from 'react'
+import React, { createContext, useState } from 'react'
 
 import handleLogin from './login.auth.context'
 import handleUser from './user.auth.context'

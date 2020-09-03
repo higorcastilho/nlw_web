@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useContext, useEffect } from 'react'
+import React, { useState, FormEvent, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
@@ -27,7 +27,7 @@ function Login() {
 	const [ letterCollor, setLetterColor ] = useState('#9c98a6')
 
 	function handleButtonColor() {
-		if(email != '' && password != '') {
+		if(email !== '' && password !== '') {
 			setButtonColor('#04d361')
 			setLetterColor('#ffffff')
 		} else if ( email === '' || password === '' ) {
@@ -91,7 +91,7 @@ function Login() {
 						<div className="login-options">
 							<span className="remember-me" onClick={handleIsChecked}>
 								{ isChecked 
-									? <img src={successCheck} />
+									? <img src={successCheck} alt="image with success check - v" />
 									: <input type="checkbox" id="remember" name="remember"/>
 								}
 								<label htmlFor="remember" > Lembrar-me </label>

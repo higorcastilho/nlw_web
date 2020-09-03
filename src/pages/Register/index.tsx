@@ -1,5 +1,4 @@
 import React, { useState, FormEvent } from 'react'
-import { Link } from 'react-router-dom'
 
 import { useHistory } from 'react-router-dom'
 
@@ -24,7 +23,7 @@ function Register() {
 	const [ letterCollor, setLetterColor ] = useState('#9c98a6')
 
 	function handleButtonColor() {
-		if(email != '' && password != '') {
+		if(email !== '' && password !== '') {
 			setButtonColor('#04d361')
 			setLetterColor('#ffffff')
 		} else if ( email === '' || password === '' ) {
@@ -110,7 +109,7 @@ function Register() {
 							/>
 
 						</fieldset>
-						<button type="submit" style={{backgroundColor: '#04d361', color: '#ffffff'}}>
+						<button type="submit" style={{backgroundColor: buttonCollor, color: letterCollor}}>
 							Concluir cadastro
 						</button>
 					</form>

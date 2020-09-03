@@ -12,9 +12,9 @@ import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons"
 
-import api from '../../services/api'
-import jwtDecode from '../../services/jwtDecode'
-import { isAuthenticated, getToken, logout } from '../../services/auth'
+
+
+import { logout } from '../../services/auth'
 
 import './styles.css'
 
@@ -37,6 +37,7 @@ function Landing() {
 				avatar: user.avatar
 			})
 		}
+		setTotalConnections(2)
 		authorizedUser()
 	}, [userInfo])
 

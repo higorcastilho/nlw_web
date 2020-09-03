@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useContext, useEffect } from 'react'
+import React, { useState, FormEvent, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
@@ -13,9 +13,6 @@ import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons"
 
 import './styles.css'
 import logoImg from '../../assets/images/logo.svg'
-
-import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg'
-import successCheck from '../../assets/images/icons/success-check-icon.svg'
 
 function ChangePassword() { 
 	
@@ -33,7 +30,7 @@ function ChangePassword() {
 	const [ letterCollor, setLetterColor ] = useState('#9c98a6')
 
 	function handleButtonColor() {
-		if(currentPassword != '' && newPassword != '' && newPasswordCompare != '') {
+		if(currentPassword !== '' && newPassword !== '' && newPasswordCompare !== '') {
 			setButtonColor('#04d361')
 			setLetterColor('#ffffff')
 		} else if ( currentPassword === '' || newPassword === '' || newPasswordCompare === '') {
@@ -42,17 +39,12 @@ function ChangePassword() {
 		}
 	}
 
-	function handleIsChecked() {
-		if (isChecked) setIsChecked(false)
-		else setIsChecked(true)
-	}
-
 	async function handleChangePassword(e: FormEvent) {
 		e.preventDefault()
 
 		setEmail(user.email)
 
-		if (newPassword != newPasswordCompare) {
+		if (newPassword !== newPasswordCompare) {
 			alert('As senhas não batem. Por favor, digite novamente.')
 			return
 		}
