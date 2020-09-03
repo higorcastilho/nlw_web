@@ -61,7 +61,7 @@ function TeacherList() {
 		setPage(page + 1)
 	}
 
-	async function searchTeachers() {
+	/*async function searchTeachers() {
 		const res = await api.get('classes', {
 			params: {
 				subject,
@@ -73,7 +73,7 @@ function TeacherList() {
 		})
 
 		return res
-	}
+	}*/
 
 	useEffect( () => {	
 
@@ -95,11 +95,11 @@ function TeacherList() {
 
 		} else {
 
-			searchTeachers().then( res => {
+			//searchTeachers().then( res => {
 				//setTeachers(res.data.results)
-			})
+			//})
 		}
-	}, [page, handleShowAllTeachers, limit, searchTeachers, subject, time, week_day])
+	}, [page, handleShowAllTeachers, limit, subject, time, week_day])
 
 	return (
 		<div id="page-teacher-list" className="container">
