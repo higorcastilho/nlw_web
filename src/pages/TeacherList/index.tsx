@@ -106,11 +106,12 @@ function TeacherList() {
 			<PageHeader title="Estes são os proffys disponíveis.">
 				<form id="search-teachers" onSubmit={ (e:FormEvent) => {
 					e.preventDefault()
-					searchTeachers().then( res => {
+					/*searchTeachers().then( res => {
 						setPage(1)
 						setTeachers(res.data.results)
 						setTotalClasses(res.data.total)
-					})
+					})*/
+					return 'Clicked'
 				} }>
 					<Select 
 						name="subject" 
