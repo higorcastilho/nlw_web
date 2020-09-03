@@ -25,7 +25,6 @@ function ChangePassword() {
 	const [ newPassword, setNewPassword ] = useState('')
 	const [ newPasswordCompare, setNewPasswordCompare ] = useState('')
 
-	const [ isChecked, setIsChecked ] = useState(false)
 	const [ buttonCollor, setButtonColor ] = useState('#dcdce5')
 	const [ letterCollor, setLetterColor ] = useState('#9c98a6')
 

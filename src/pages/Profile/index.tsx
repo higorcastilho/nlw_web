@@ -3,10 +3,8 @@ import { useHistory, Link } from 'react-router-dom'
 
 import { Context } from '../../context/AuthContext'
 
-import PageHeader from '../../components/PageHeader'
 import Input from '../../components/Input'
 import Textarea from '../../components/Textarea'
-import Select from '../../components/Select'
 
 import warningIcon from '../../assets/images/icons/warning.svg'
 import successBackground from '../../assets/images/success-background.svg'
@@ -31,12 +29,12 @@ function Profile() {
 	const [ toggleModal, setToggleModal ] = useState('none')
 	const [ showPage, setShowPage ] = useState('')
 
-	const [ userId, setUserId ] = useState(0)
+	//const [ userId, setUserId ] = useState(0)
 	const [ name, setName ] = useState('')
 	const [ avatar, setAvatar ] = useState('')
 	const [ whatsapp, setWhatsapp ] = useState('')
 	const [ bio, setBio ] = useState('')
-	const [ account_id, setAccount_id ] = useState(0)
+	//const [ account_id, setAccount_id ] = useState(0)
 	const [ firstName, setFirstName ] = useState('')
 	const [ lastName, setLastName ] = useState('')
 	const [ email, setEmail ] = useState('')
@@ -45,19 +43,19 @@ function Profile() {
 		
 		async function authorizedUser() {
 			await handleUserInfo()
-				setUserId(user.userId)
+				//setUserId(user.userId)
 				setName(user.name)
 				setAvatar(user.avatar)
 				setWhatsapp(user.whatsapp)
 				setBio(user.bio)
-				setAccount_id(user.account_id)
+				//setAccount_id(user.account_id)
 				setFirstName(user.firstName)
 				setLastName(user.lastName)
 				setEmail(user.email)
 		}
 
 		authorizedUser()
-	}, [])
+	}, [handleUserInfo, user])
 
 	async function handleUpdateUser(e: FormEvent) {
 		e.preventDefault()

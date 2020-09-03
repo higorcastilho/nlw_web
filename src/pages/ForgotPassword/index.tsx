@@ -17,7 +17,6 @@ function ForgotPassword() {
 	const history = useHistory()
 
 	const [ email, setEmail ] = useState('')
-	const [ isChecked, setIsChecked ] = useState(false)
 	const [ buttonCollor, setButtonColor ] = useState('#dcdce5')
 	const [ letterCollor, setLetterColor ] = useState('#9c98a6')
 

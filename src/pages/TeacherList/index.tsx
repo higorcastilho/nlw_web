@@ -83,7 +83,7 @@ function TeacherList() {
 		const xPos = position.x
 		const yPos = position.y
 		setXPos(xPos)
-		setXPos(yPos)
+		setYPos(yPos)
 
 		if (subject === '' || week_day === '' || time === '' ) {
 

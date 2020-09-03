@@ -39,7 +39,7 @@ function Landing() {
 		}
 		setTotalConnections(2)
 		authorizedUser()
-	}, [userInfo])
+	}, [userInfo, handleUserInfo, user.avatar, user.name])
 
 	async function handleLogout() {
 		await logout()

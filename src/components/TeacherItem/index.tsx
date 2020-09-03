@@ -37,25 +37,18 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 		switch (day) {
 			case 6:
 				return 'Domingo' 
-				break;
 			case 0:
 				return 'Segunda' 
-				break;
 			case 1:
 				return 'Terça' 
-				break;
 			case 2:
 				return 'Quarta' 
-				break;
 			case 3:
 				return 'Quinta' 
-				break;
 			case 4:
 				return 'Sexta' 
-				break;
 			case 5:
 				return 'Sábado' 
-				break;
 		}
 	}
 

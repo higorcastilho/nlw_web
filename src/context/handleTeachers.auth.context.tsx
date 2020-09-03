@@ -73,6 +73,7 @@ export default async function showAllTeachers(page: number, limit: number):Promi
 			schedules.map( (scheduleItem: ScheduleItem) => {
 				if (scheduleItem.class_id === teacher.classIdPrimary) {
 					teacher.schedules.push(scheduleItem)
+					return
 				}
 			} )
 		})
