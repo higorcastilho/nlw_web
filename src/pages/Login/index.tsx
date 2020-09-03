@@ -91,7 +91,7 @@ function Login() {
 						<div className="login-options">
 							<span className="remember-me" onClick={handleIsChecked}>
 								{ isChecked 
-									? <img src={successCheck} alt="image with success check - v" />
+									? <img src={successCheck} alt="Check simbolizando assinalado - v" />
 									: <input type="checkbox" id="remember" name="remember"/>
 								}
 								<label htmlFor="remember" > Lembrar-me </label>

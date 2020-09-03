@@ -83,9 +83,11 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 
 							if (item.week_day === schedule.week_day) {
 								week_days[index] = schedule
-							} else {
-								week_days[index] = week_days[index]
-							}
+							} //else {
+								//week_days[index] = week_days[index]
+							//}
+
+							return ''
 						})
 
 						const [ fromHour, fromMinutes ] = convertMinutesToHours(week_days[index].from)
@@ -117,7 +119,8 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 					<strong>R$ {teacher.cost}</strong>
 				</p>
 				<a  
-					target="_blank" 
+					target="_blank"
+					rel="noopener noreferrer" 
 					onClick={createNewConnection} 
 					href={`https://wa.me/${teacher.whatsapp}`}
 				>

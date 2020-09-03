@@ -150,7 +150,7 @@ function Profile() {
 					<img src={logoImg} alt="Proffy" />
 				</div>
 				<div className="teacher-photo">
-					<img src={avatar} />
+					<img src={avatar} alt="Foto do usuário na página de perfil."/>
 					<FontAwesomeIcon
 						icon={faCamera}
 						className="photo-button"

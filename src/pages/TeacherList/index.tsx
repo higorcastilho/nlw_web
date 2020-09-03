@@ -99,7 +99,7 @@ function TeacherList() {
 				//setTeachers(res.data.results)
 			})
 		}
-	}, [page])
+	}, [page, handleShowAllTeachers, limit, searchTeachers, subject, time, week_day])
 
 	return (
 		<div id="page-teacher-list" className="container">
