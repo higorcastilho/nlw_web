@@ -54,7 +54,7 @@ function Profile() {
 
 	useEffect(() => {
 		authorizedUser()
-	}, [authorizedUser, user])
+	}, [authorizedUser, handleUserInfo, user])
 
 	async function handleUpdateUser(e: FormEvent) {
 		e.preventDefault()
