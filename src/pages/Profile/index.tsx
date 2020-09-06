@@ -40,7 +40,7 @@ function Profile() {
 	const [ email, setEmail ] = useState('')
 
 	useEffect(() => {
-		
+	
 		async function authorizedUser() {
 			await handleUserInfo()
 				//setUserId(user.userId)
@@ -55,7 +55,7 @@ function Profile() {
 		}
 
 		authorizedUser()
-	})
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	async function handleUpdateUser(e: FormEvent) {
 		e.preventDefault()
