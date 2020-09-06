@@ -55,7 +55,7 @@ function Profile() {
 		}
 
 		authorizedUser()
-	}, [handleUserInfo, user])
+	}, [])
 
 	async function handleUpdateUser(e: FormEvent) {
 		e.preventDefault()
