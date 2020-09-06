@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react'
 import handleLogin from './login.auth.context'
 import handleUser from './user.auth.context'
 import showAllTeachers from './handleTeachers.auth.context'
+import searchTeachers from './handleSearchTeachers.auth.context'
 
 interface AuthContextData {
 	authenticated: boolean
@@ -21,6 +22,8 @@ interface AuthContextData {
 	signIn(email:string, password:string):Promise<void>
 	handleUserInfo():Promise<void>
 	handleShowAllTeachers(page: number, limit: number):Promise<any[]>
+	handleSearchTeachers(subject: string, week_day: number | string, time: string, page: number, limit: number):Promise<any[]>
+
 }
 
 export const Context = createContext<AuthContextData>({} as AuthContextData)
@@ -84,8 +87,13 @@ export const AuthProvider: React.FC = ( { children } ) => {
 		return teachersData
 	}
 
+	async function handleSearchTeachers(subject: string, week_day: number | string, time: string, page: number, limit: number) {
+		const teachersData = await searchTeachers(subject, week_day, time, page, limit)
+		return teachersData
+	}
+
 	return (
-		<Context.Provider value={ { authenticated, user, signIn, handleUserInfo, handleShowAllTeachers } }>
+		<Context.Provider value={ { authenticated, user, signIn, handleUserInfo, handleShowAllTeachers, handleSearchTeachers } }>
 			{ children }
 		</Context.Provider>
 	)

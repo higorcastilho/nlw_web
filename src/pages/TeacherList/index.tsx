@@ -29,7 +29,7 @@ function TeacherList() {
 		}
 	])
 
-	const { handleShowAllTeachers } = useContext(Context)
+	const { handleShowAllTeachers, handleSearchTeachers } = useContext(Context)
  
 	const [xPos, setXPos] = useState(0)
 	const [yPos, setYPos] = useState(0)
@@ -61,19 +61,18 @@ function TeacherList() {
 		setPage(page + 1)
 	}
 
-	/*async function searchTeachers() {
-		const res = await api.get('classes', {
-			params: {
-				subject,
-				week_day,
-				time,
-				page,
-				limit
+	function searchTeachers() {
+		const data = handleSearchTeachers(subject, week_day, time, page, limit)
+		data.then( res => {
+			try {
+				setTeachers(res)
+				setTotalClasses(res[0].total)
+			} catch (e) {
+				console.log(e)
+				console.log('Nenhum professor encontrado')
 			}
 		})
-
-		return res
-	}*/
+	}
 
 	useEffect( () => {	
 
@@ -89,30 +88,27 @@ function TeacherList() {
 
 			const data = handleShowAllTeachers(page, limit)
 			data.then( res => {
-				setTeachers(res)
-				setTotalClasses(res[0].total)
+				try {
+					setTeachers(res)
+					setTotalClasses(res[0].total)
+				} catch (e) {
+					console.log(e)
+					console.log('Nenhum professor encontrado')
+				}
 			})
-
-		} else {
-
-			//searchTeachers().then( res => {
-				//setTeachers(res.data.results)
-			//})
 		}
-	}, [page, handleShowAllTeachers, limit, subject, time, week_day])
+
+	}, [page]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<div id="page-teacher-list" className="container">
 			<PageHeader title="Estes são os proffys disponíveis.">
 				<form id="search-teachers" onSubmit={ (e:FormEvent) => {
 					e.preventDefault()
-					/*searchTeachers().then( res => {
-						setPage(1)
-						setTeachers(res.data.results)
-						setTotalClasses(res.data.total)
-					})*/
-					return 'Clicked'
-				} }>
+
+					searchTeachers()
+					} 
+				}>
 					<Select 
 						name="subject" 
 						label="Matéria"
