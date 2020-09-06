@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect, useContext } from 'react'
+import React, { useState, FormEvent, useEffect, useContext, useCallback } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
 import { Context } from '../../context/AuthContext'
@@ -39,18 +39,22 @@ function Profile() {
 	const [ lastName, setLastName ] = useState('')
 	const [ email, setEmail ] = useState('')
 
-	useEffect(() => {
-		handleUserInfo()
-		//setUserId(user.userId)
-		setName(user.name)
-		setAvatar(user.avatar)
-		setWhatsapp(user.whatsapp)
-		setBio(user.bio)
-		//setAccount_id(user.account_id)
-		setFirstName(user.firstName)
-		setLastName(user.lastName)
-		setEmail(user.email)
+	const authorizedUser = useCallback( async () => {
+		await handleUserInfo()
+			//setUserId(user.userId)
+			setName(user.name)
+			setAvatar(user.avatar)
+			setWhatsapp(user.whatsapp)
+			setBio(user.bio)
+			//setAccount_id(user.account_id)
+			setFirstName(user.firstName)
+			setLastName(user.lastName)
+			setEmail(user.email)
 	}, [])
+
+	useEffect(() => {
+		authorizedUser()
+	}, [authorizedUser, user])
 
 	async function handleUpdateUser(e: FormEvent) {
 		e.preventDefault()
