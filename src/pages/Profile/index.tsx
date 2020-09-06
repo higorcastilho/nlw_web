@@ -40,21 +40,16 @@ function Profile() {
 	const [ email, setEmail ] = useState('')
 
 	useEffect(() => {
-		
-		async function authorizedUser() {
-			await handleUserInfo()
-				//setUserId(user.userId)
-				setName(user.name)
-				setAvatar(user.avatar)
-				setWhatsapp(user.whatsapp)
-				setBio(user.bio)
-				//setAccount_id(user.account_id)
-				setFirstName(user.firstName)
-				setLastName(user.lastName)
-				setEmail(user.email)
-		}
-
-		authorizedUser()
+		handleUserInfo()
+		//setUserId(user.userId)
+		setName(user.name)
+		setAvatar(user.avatar)
+		setWhatsapp(user.whatsapp)
+		setBio(user.bio)
+		//setAccount_id(user.account_id)
+		setFirstName(user.firstName)
+		setLastName(user.lastName)
+		setEmail(user.email)
 	}, [])
 
 	async function handleUpdateUser(e: FormEvent) {
