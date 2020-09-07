@@ -79,6 +79,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 
 				{ 
 					week_days.map( (item, index) => {
+						
 						teacher.schedules.map( schedule => {
 
 							if (item.week_day === schedule.week_day) {
@@ -93,6 +94,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 						const [ fromHour, fromMinutes ] = convertMinutesToHours(week_days[index].from)
 						const [ toHour, toMinutes ] = convertMinutesToHours(week_days[index].to)
 						const day = handleWeekDay(week_days[index].week_day)
+
 						if (!week_days[index].to && !week_days[index].from) {
 							return <section style={{opacity: "0.45"}}>
 									<p>Dia</p>

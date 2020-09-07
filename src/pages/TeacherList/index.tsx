@@ -89,6 +89,7 @@ function TeacherList() {
 			const data = handleShowAllTeachers(page, limit)
 			data.then( res => {
 				try {
+					
 					setTeachers(res)
 					setTotalClasses(res[0].total)
 				} catch (e) {

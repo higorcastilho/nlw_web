@@ -7,7 +7,7 @@ interface TeacherResponse {
 	cost: number
 	subject: string
 	whatsapp: string
-	classIdPrimary: number
+	id_class_primary: number
 	schedules: any[]
 	total: number
 }
@@ -49,7 +49,7 @@ const showTeachers = (page: number, limit: number):Promise<TeacherResponse[]> =>
 						cost: teacherResponse.cost,
 						subject: teacherResponse.subject,
 						whatsapp: teacherResponse.whatsapp,
-						classIdPrimary: teacherResponse.classIdPrimary,
+						id_class_primary: teacherResponse.id_class_primary,
 						schedules: schedules,
 						total: res.data.total
 					}
@@ -71,7 +71,7 @@ export default async function showAllTeachers(page: number, limit: number):Promi
 		
 		teachers.map( (teacher: TeacherResponse) => {
 			schedules.map( (scheduleItem: ScheduleItem) => {
-				if (scheduleItem.class_id === teacher.classIdPrimary) {
+				if (scheduleItem.class_id === teacher.id_class_primary) {
 					teacher.schedules.push(scheduleItem)
 				}
 				return ''
