@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getToken } from './auth'
 
 const api = axios.create({
-	baseURL: 'https://proffy-deploy-hc.herokuapp.com/' //'http://localhost:3333'
+	baseURL: 'http://localhost:3333' //'https://proffy-deploy-hc.herokuapp.com/'
 })
 
 api.interceptors.request.use( async config => {

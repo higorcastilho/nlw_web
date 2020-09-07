@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
+import api from '../../services/api'
+
 import { Context } from '../../context/AuthContext'
 
 import logoImg from '../../assets/images/logo.svg'
@@ -37,9 +39,17 @@ function Landing() {
 				avatar: user.avatar
 			})
 		}
-		setTotalConnections(2)
 		authorizedUser()
-	}, [userInfo, handleUserInfo, user.avatar, user.name])
+		
+		async function handleGetConnections() {
+			await api.get('connections').then( res => {
+				const { total } = res.data
+				setTotalConnections(total)
+			})
+		}
+		handleGetConnections()
+
+	}, [userInfo, handleUserInfo, user.avatar, user.name]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	async function handleLogout() {
 		await logout()
