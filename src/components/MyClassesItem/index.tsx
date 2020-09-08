@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import convertMinutesToHours from '../../utils/convertMinutesToHours'
 
@@ -9,29 +10,23 @@ import api from '../../services/api'
 import './styles.css'
 
 export interface Teacher {
-	avatar: string
-	bio: string
+	avatar?: string
+	bio?: string
 	cost: number
 	id: number
 	account_id: number
-	name: string
+	id_class_primary: number
+	name?: string
 	subject: string
 	whatsapp?: string
 	schedules: any[]
 }
 
-interface TeacherItemProps {
+interface MyClassesItemProps {
 	teacher: Teacher
 }
 
-const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
-
-
-	async function createNewConnection() {
-		await api.post('connections', {
-			user_id: teacher.id
-		})
-	}
+const MyClassesItem: React.FC<MyClassesItemProps> = ({ teacher }) => {
 
 	function handleWeekDay(day: number) {
 		switch (day) {
@@ -64,17 +59,12 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 	]
 
 	return (
-		<article className="teacher-item">
-			
+		<article className="my-classes-item">	
 			<header>
-				<img src={teacher.avatar} alt="" />
 				<div>
-					<strong>{teacher.name}</strong>
-					<span>{teacher.subject}</span>
+					<span id="my-classes-span">{teacher.subject}</span>
 				</div>
 			</header>
-
-			<p> {teacher.bio} </p>
 
 			<div id="teacher-item-schedule-card">
 
@@ -121,18 +111,17 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 					Preço/hora
 					<strong>R$ {teacher.cost}</strong>
 				</p>
-				<a  
-					target="_blank"
-					rel="noopener noreferrer" 
-					onClick={createNewConnection} 
-					href={`https://wa.me/${teacher.whatsapp}`}
+				<Link  
+					to={{
+						pathname:"/edit-delete-class",
+						search:`?class_id=${teacher.id_class_primary}`
+					}}
 				>
-					<img src={whatsappIcon} alt="Whatsapp"/>
-					Entrar em contato
-				</a>
+					Editar/Excluir
+				</Link>
 			</footer>
 		</article>
 	)
 }
 
-export default TeacherItem
+export default MyClassesItem

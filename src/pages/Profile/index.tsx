@@ -10,6 +10,7 @@ import warningIcon from '../../assets/images/icons/warning.svg'
 import successBackground from '../../assets/images/success-background.svg'
 import logoImg from '../../assets/images/logo.svg'
 import backIcon from '../../assets/images/icons/back.svg'
+import giveClassesIcon from '../../assets/images/icons/give-classes.svg'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons"
@@ -208,6 +209,18 @@ function Profile() {
 							Salvar alterações
 						</button>
 					</footer>
+				</form>
+				<form style={{marginTop: '2rem', marginBottom: '7rem'}}>
+					<fieldset>
+						<legend>Dados das suas aulas</legend>
+						<Link to="/my-classes" id="my-classes-button">
+							<button type="submit" >
+								<img src={giveClassesIcon} alt="Ver minhas aulas" />
+								Ver minhas aulas
+							</button>
+						</Link>
+						
+					</fieldset>
 				</form>
 				<form onSubmit={handleUpdateAccount} style={{marginTop: '2rem'}}>
 					<fieldset>

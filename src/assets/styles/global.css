@@ -19,6 +19,8 @@
 	--color-button-text: #FFFFFF;
 	--color-box-base: #FFFFFF;
 	--color-box-footer: #FAFAFC;
+	--color-danger: #D9544F;
+	--color-danger-dark: #DE3E44;
 }
 
 * {

@@ -13,6 +13,8 @@ import Profile from './pages/Profile'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 import ChangePassword from './pages/ChangePassword'
+import MyClasses from './pages/MyClasses'
+import EditDeleteClass from './pages/EditDeleteClass'
 
 interface PrivateRouteProps extends RouteProps {
 	component: any
@@ -50,6 +52,8 @@ function Routes() {
 			<PrivateRoute path="/give-classes" component={TeacherForm} />
 			<PrivateRoute path="/profile" component={Profile} />
 			<PrivateRoute path="/change-password" component={ChangePassword} />
+			<PrivateRoute path="/my-classes" component={MyClasses} />
+			<PrivateRoute path="/edit-delete-class" component={EditDeleteClass} />
 		</BrowserRouter>
 	)
 }

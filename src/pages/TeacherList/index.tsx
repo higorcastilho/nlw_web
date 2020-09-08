@@ -86,7 +86,7 @@ function TeacherList() {
 
 		if (subject === '' || week_day === '' || time === '' ) {
 
-			const data = handleShowAllTeachers(page, limit)
+			const data = handleShowAllTeachers(page, limit, 0)
 			data.then( res => {
 				try {
 					

@@ -27,11 +27,11 @@ const showSchedules = ():Promise<ScheduleItem[]> => {
 	})
 }
 
-const showTeachers = (page: number, limit: number):Promise<TeacherResponse[]> => {
+const showTeachers = (page: number, limit: number, account_id: number):Promise<TeacherResponse[]> => {
 
 	return new Promise( (resolve) => {
 
-			api.get('classes', {
+			api.get(`classes/${account_id}`, {
 				params: {
 					page, 
 					limit
@@ -60,11 +60,11 @@ const showTeachers = (page: number, limit: number):Promise<TeacherResponse[]> =>
 	} )
 }
 
-export default async function showAllTeachers(page: number, limit: number):Promise<any[]> {
+export default async function showAllTeachers(page: number, limit: number, account_id: number):Promise<any[]> {
 	
 	const schedules = await showSchedules()
 	
-	const teachers = await showTeachers(page, limit)
+	const teachers = await showTeachers(page, limit, account_id)
 
 
 	return new Promise( resolve => {

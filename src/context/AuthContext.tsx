@@ -21,7 +21,7 @@ interface AuthContextData {
 
 	signIn(email:string, password:string):Promise<void>
 	handleUserInfo():Promise<void>
-	handleShowAllTeachers(page: number, limit: number):Promise<any[]>
+	handleShowAllTeachers(page: number, limit: number, account_id: number):Promise<any[]>
 	handleSearchTeachers(subject: string, week_day: number | string, time: string, page: number, limit: number):Promise<any[]>
 
 }
@@ -82,8 +82,8 @@ export const AuthProvider: React.FC = ( { children } ) => {
 		}
 	}
 
-	async function handleShowAllTeachers(page: number, limit: number) {
-		const teachersData = await showAllTeachers(page, limit)
+	async function handleShowAllTeachers(page: number, limit: number, account_id: number) {
+		const teachersData = await showAllTeachers(page, limit, account_id)
 		return teachersData
 	}
 
