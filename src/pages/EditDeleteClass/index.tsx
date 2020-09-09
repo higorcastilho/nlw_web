@@ -1,22 +1,17 @@
 import React, { useState, FormEvent, useContext, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 
-
 import { Context } from '../../context/AuthContext'
 
 import convertMinutesToHours from '../../utils/convertMinutesToHours'
 
 import api from '../../services/api'
 
-import PageHeader from '../../components/PageHeader'
 import Input from '../../components/Input'
 import Select from '../../components/Select'
 
-import warningIcon from '../../assets/images/icons/warning.svg'
-import rocket from '../../assets/images/icons/rocket.svg'
 import logoImg from '../../assets/images/logo.svg'
 import backIcon from '../../assets/images/icons/back.svg'
-import successBackground from '../../assets/images/success-background.svg'
 
 import './styles.css'
 
@@ -30,8 +25,6 @@ interface ScheduleItem {
 function EditDeleteClass() {
 
 	const history = useHistory()
-
-	const { user: { account_id } } = useContext(Context)
 
 	const [subject, setSubject] = useState('')
 	const [cost, setCost] = useState('')
@@ -95,20 +88,6 @@ function EditDeleteClass() {
 			history.push('/my-classes')
 			alert('Aula alterada com sucesso')
 		})		
-	}
-
-	async function handleCreateClass(id: number) {
-
-		await api.post(`classes/${id}`, {
-			subject,
-			cost: Number(cost),
-			schedule: scheduleItems
-		}).then(() => {
-			alert('Cadastro realizado com sucesso!')
-		}).catch(e => {
-			alert('Erro ao cadastrar')
-			console.log(e)
-		})
 	}
 
 	async function handleDeleteTime(e: FormEvent, scheduleItem:ScheduleItem) {

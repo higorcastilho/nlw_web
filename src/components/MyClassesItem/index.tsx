@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom'
 
 import convertMinutesToHours from '../../utils/convertMinutesToHours'
 
-import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
-
-import api from '../../services/api'
-
 import './styles.css'
 
 export interface Teacher {

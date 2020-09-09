@@ -1,16 +1,12 @@
-import React, { useState, FormEvent, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Context } from '../../context/AuthContext'
 
-import PageHeader from '../../components/PageHeader'
 import MyClassesItem, { Teacher } from '../../components/MyClassesItem'
-import Input from '../../components/Input'
-import Select from '../../components/Select'
 
 import logoImg from '../../assets/images/logo.svg'
 import backIcon from '../../assets/images/icons/back.svg'
-import successBackground from '../../assets/images/success-background.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -38,10 +34,6 @@ function MyClasses() {
 	const [page, setPage] = useState(1)
 	const [limit] = useState(5)
 	const [totalClasses, setTotalClasses] = useState(0)
-
-	const [ subject, setSubject ] = useState('') 
-	const [ week_day, setWeekDay ] = useState('')
-	const [ time, setTime ] = useState('')
 
 	function handlePreviousButton() {
 		
