@@ -105,10 +105,11 @@ function MyClasses() {
 					<Link to="/profile">
 						<img src={backIcon} alt="Voltar" />
 					</Link>
+					<p>Minhas aulas</p>
 					<img src={logoImg} alt="Proffy" />
 				</div>
 			</header>
-			<div className="pagination-container">
+			{ teachers[0] && <div className="pagination-container">
 				<FontAwesomeIcon
 					icon={faChevronLeft}
 					className="pagination-left-button"
@@ -121,28 +122,33 @@ function MyClasses() {
 					onClick={handleNextButton}
 				/>
 
-			</div>
+			</div> }
 
-			<main>
-				{teachers && teachers.map((teacher: Teacher, index: number) => {
-					return <MyClassesItem key={index} teacher={teacher} />
-				})}
-			</main>
-			<div id="footer-pagination-buttons" className="pagination-container">
-				<FontAwesomeIcon
-					icon={faChevronLeft}
-					className="pagination-left-button"
-					onClick={handlePreviousButton}
-				/>
-				Página { page } de { Math.ceil(totalClasses / limit) }
-				<FontAwesomeIcon
-					icon={faChevronRight}
-					className="pagination-right-button"
-					onClick={handleNextButton}
-				/>
+				{ teachers[0] && <main>
+					{teachers && teachers.map((teacher: Teacher, index: number) => {
+						return <MyClassesItem key={index} teacher={teacher} />
+					})}
+				</main> }
 
-			</div>
-		</div>
+				{ teachers[0] && <div id="footer-pagination-buttons" className="pagination-container">
+					<FontAwesomeIcon
+						icon={faChevronLeft}
+						className="pagination-left-button"
+						onClick={handlePreviousButton}
+					/>
+					Página { page } de { Math.ceil(totalClasses / limit) }
+					<FontAwesomeIcon
+						icon={faChevronRight}
+						className="pagination-right-button"
+						onClick={handleNextButton}
+					/>
+				</div> } 
+
+			{ !teachers[0] && <div id="my-classes-not-found">
+				<p>Você ainda não possui aulas cadastradas. Corre lá na página inicial e clique em "Dar Aulas"!</p>
+			</div> }
+		</div> 
+
 	)
 }
 

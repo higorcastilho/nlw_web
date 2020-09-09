@@ -59,7 +59,7 @@
 .my-classes-item footer a {
 	width: 20rem;
 	height: 5.6rem;
-	background: var(--color-secondary);
+	background: var(--color-primary-lighter);
 	color: var(--color-button-text);
 	border: 0;
 	border-radius: 0.8rem;
@@ -73,7 +73,7 @@
 }
 
 .my-classes-item footer a:hover {
-	background: var(--color-secondary-dark);
+	background: var(--color-primary-light);
 }
 
 #teacher-item-schedule-card {

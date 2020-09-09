@@ -80,6 +80,20 @@
 	margin-bottom: 8rem
 }
 
+#my-classes-not-found {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#my-classes-not-found > p {
+	font: 700 1.6rem Poppins;
+	max-width: 80%;
+	text-align: center;
+}
+
 @media (min-width: 700px) {
 	#page-my-classes {
 		max-width: 100%;

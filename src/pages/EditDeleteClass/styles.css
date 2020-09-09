@@ -117,6 +117,20 @@
 	background: var(--color-danger-dark);
 }
 
+#edit-delete-class-delete-time {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 3rem 0;
+	color: var(--color-danger-dark);
+	cursor: pointer
+}
+
+#edit-delete-class-delete-time > hr {
+	width: 10rem;
+	border: 1px solid var(--color-line-in-white) ;
+}
+
 @media (min-width: 700px) {
 	#page-edit-delete-class {
 		max-width: 100vw;
@@ -154,5 +168,19 @@
 	#page-edit-delete-class main footer button {
 		width: 20rem;
 		margin-top: 0;
+	}
+
+	#edit-delete-class-delete-time {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 3rem 0;
+		color: var(--color-danger-dark);
+		cursor: pointer
+	}
+
+	#edit-delete-class-delete-time > hr {
+		width: 20rem;
+		border: 1px solid var(--color-line-in-white) ;
 	}
 }

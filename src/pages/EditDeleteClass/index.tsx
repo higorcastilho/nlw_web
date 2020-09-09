@@ -20,6 +20,12 @@ import successBackground from '../../assets/images/success-background.svg'
 
 import './styles.css'
 
+interface ScheduleItem {
+	schedule_id: number
+	week_day: number
+	from: string
+	to: string
+}
 
 function EditDeleteClass() {
 
@@ -30,14 +36,16 @@ function EditDeleteClass() {
 	const [subject, setSubject] = useState('')
 	const [cost, setCost] = useState('')
 
+	const [schedule_idsToRemove, setSchedule_idsToRemove] = useState([{ schedule_id: 0 }])
+ 
 	const [scheduleItems, setScheduleItems] = useState([
-		{ week_day: 0, from: '', to: '' }
+		{ schedule_id: 0, week_day: 0, from: '', to: '' }
 	])
 
 	function addNewScheduleItem() {
 		setScheduleItems([
 			...scheduleItems,
-			{ week_day: 0, from: '', to: '' }
+			{ schedule_id: 0, week_day: 0, from: '', to: '' }
 		])
 	}
 
@@ -64,7 +72,20 @@ function EditDeleteClass() {
 	async function handleUpdateClass() {
 		const urlParams = new URLSearchParams(window.location.search)
 		const class_id= urlParams.get('class_id')
-		console.log(scheduleItems)
+		
+		if (subject === '' || cost === '' || scheduleItems.length === 0) {
+			alert('Por favor, preencha todos os campos.')
+			return
+		}		
+
+
+
+		schedule_idsToRemove.map( async item => {
+			await api.delete(`remove-schedule-time/${item.schedule_id}`).then( () => {
+				return
+			})
+		})
+
 
 		await api.post(`classes-update/${class_id}`, {
 			subject,
@@ -88,6 +109,19 @@ function EditDeleteClass() {
 			alert('Erro ao cadastrar')
 			console.log(e)
 		})
+	}
+
+	async function handleDeleteTime(e: FormEvent, scheduleItem:ScheduleItem) {
+		e.preventDefault()
+		const scheduleItemsWithoutRemovedTime = scheduleItems.filter( (item:ScheduleItem) => {
+			return item.schedule_id !== scheduleItem.schedule_id
+		})
+
+		setScheduleItems(scheduleItemsWithoutRemovedTime)
+		setSchedule_idsToRemove([
+			...schedule_idsToRemove,
+			{ schedule_id: scheduleItem.schedule_id }
+		])
 	}
 
 	useEffect(() => {
@@ -178,41 +212,50 @@ function EditDeleteClass() {
 							</button>
 						</legend>
 
-						{scheduleItems.map((scheduleItem, index) => {
+						{ Boolean(scheduleItems.length) && scheduleItems.map((scheduleItem, index) => {
 							return (
-								<div key={scheduleItem.week_day} className="schedule-item">
-									<Select
-										name="week_day"
-										label="Dia da Semana"
-										value={scheduleItem.week_day}
-										onChange={ e => setScheduleItemValue(index, 'week_day', e.target.value) }
-										options={[
-										{ value: '6', label: 'Domingo' },
-										{ value: '0', label: 'Segunda-feira' },
-										{ value: '1', label: 'Terça-feira' },
-										{ value: '2', label: 'Quarta-feira' },
-										{ value: '3', label: 'Quinta-feira' },
-										{ value: '4', label: 'Sexta-feira' },
-										{ value: '5', label: 'Sábado' },
-									]} 
-									/>
-									<Input 
-										name="from" 
-										label="Das" 
-										type="time"
-										value={scheduleItem.from}
-										onChange={e => setScheduleItemValue(index, 'from', e.target.value) } 
-									/>
-									<Input 
-										name="to" 
-										label="Até" 
-										type="time"
-										value={scheduleItem.to}
-										onChange={e => setScheduleItemValue(index, 'to', e.target.value) } 
-									/>
+								<div>
+									<div key={scheduleItem.week_day} className="schedule-item">
+										<Select
+											name="week_day"
+											label="Dia da Semana"
+											value={scheduleItem.week_day}
+											onChange={ e => setScheduleItemValue(index, 'week_day', e.target.value) }
+											options={[
+											{ value: '6', label: 'Domingo' },
+											{ value: '0', label: 'Segunda-feira' },
+											{ value: '1', label: 'Terça-feira' },
+											{ value: '2', label: 'Quarta-feira' },
+											{ value: '3', label: 'Quinta-feira' },
+											{ value: '4', label: 'Sexta-feira' },
+											{ value: '5', label: 'Sábado' },
+										]} 
+										/>
+										<Input 
+											name="from" 
+											label="Das" 
+											type="time"
+											value={scheduleItem.from}
+											onChange={e => setScheduleItemValue(index, 'from', e.target.value) } 
+										/>
+										<Input 
+											name="to" 
+											label="Até" 
+											type="time"
+											value={scheduleItem.to}
+											onChange={e => setScheduleItemValue(index, 'to', e.target.value) } 
+										/>
+									</div>
+									<div id="edit-delete-class-delete-time" onClick={ (e) => { handleDeleteTime(e, scheduleItem) } }>
+										<hr/> Excluir horário <hr/>
+									</div>
 								</div> 
 							)
 						})}
+						{ !scheduleItems.length && <div>
+								Adicione dia e hora aqui :)
+							</div>
+						}
 						
 					</fieldset>
 
