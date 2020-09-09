@@ -69,14 +69,11 @@ function EditDeleteClass() {
 			return
 		}		
 
-
-
 		schedule_idsToRemove.map( async item => {
 			await api.delete(`remove-schedule-time/${item.schedule_id}`).then( () => {
 				return
 			})
 		})
-
 
 		await api.post(`classes-update/${class_id}`, {
 			subject,
@@ -91,7 +88,11 @@ function EditDeleteClass() {
 	async function handleDeleteTime(e: FormEvent, scheduleItem:ScheduleItem) {
 		e.preventDefault()
 		const scheduleItemsWithoutRemovedTime = scheduleItems.filter( (item:ScheduleItem) => {
-			return item.schedule_id !== scheduleItem.schedule_id
+			if (item.schedule_id !== scheduleItem.schedule_id) {
+				return item
+			} else {
+				return
+			}
 		})
 
 		setScheduleItems(scheduleItemsWithoutRemovedTime)
