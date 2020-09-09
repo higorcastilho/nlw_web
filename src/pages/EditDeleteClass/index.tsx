@@ -1,7 +1,5 @@
-import React, { useState, FormEvent, useContext, useEffect } from 'react'
+import React, { useState, FormEvent, useEffect } from 'react'
 import { useHistory, Link } from 'react-router-dom'
-
-import { Context } from '../../context/AuthContext'
 
 import convertMinutesToHours from '../../utils/convertMinutesToHours'
 
