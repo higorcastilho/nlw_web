@@ -91,7 +91,8 @@ function EditDeleteClass() {
 			if (item.schedule_id !== scheduleItem.schedule_id) {
 				return item
 			}
-			return 
+
+			return {}
 		})
 
 		setScheduleItems(scheduleItemsWithoutRemovedTime)
