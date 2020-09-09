@@ -87,10 +87,11 @@ function EditDeleteClass() {
 
 	async function handleDeleteTime(e: FormEvent, scheduleItem:ScheduleItem) {
 		e.preventDefault()
-		const scheduleItemsWithoutRemovedTime = scheduleItems.filter( function(item:ScheduleItem) {
+		const scheduleItemsWithoutRemovedTime = scheduleItems.filter( (item:ScheduleItem) => {
 			if (item.schedule_id !== scheduleItem.schedule_id) {
 				return item
-			} 
+			}
+			return 
 		})
 
 		setScheduleItems(scheduleItemsWithoutRemovedTime)
