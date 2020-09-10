@@ -4,7 +4,7 @@ import convertMinutesToHours from '../../utils/convertMinutesToHours'
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 
-import api from '../../services/api'
+import httpService from '../../services/http'
 
 import './styles.css'
 
@@ -28,8 +28,10 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
 
 
 	async function createNewConnection() {
-		await api.post('connections', {
-			user_id: teacher.id
+		await httpService.post('connections', {
+			user_id: teacher.account_id
+		}).then(res => {
+			console.log(res)
 		})
 	}
 

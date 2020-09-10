@@ -1,4 +1,4 @@
-import api from '../services/api'
+import httpService from '../services/http'
 
 interface TeacherResponse {
 	name: string
@@ -21,7 +21,7 @@ interface ScheduleItem {
 
 const showSchedules = ():Promise<ScheduleItem[]> => {
 	return new Promise( (resolve) => {
-		api.get('classes-schedules').then( (res) => {
+		httpService.get('classes-schedules').then( (res) => {
 			resolve(res.data)
 		})
 	})
@@ -31,7 +31,7 @@ const showTeachers = (subject: string, week_day: number | string, time: string, 
 
 	return new Promise( (resolve) => {
 
-			api.get('classes', {
+			httpService.get('classes', {
 				params: {
 					subject,
 					week_day,

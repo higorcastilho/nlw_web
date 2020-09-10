@@ -3,7 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 
 import convertMinutesToHours from '../../utils/convertMinutesToHours'
 
-import api from '../../services/api'
+import httpService from '../../services/http'
 
 import Input from '../../components/Input'
 import Select from '../../components/Select'
@@ -54,7 +54,7 @@ function EditDeleteClass() {
 		const urlParams = new URLSearchParams(window.location.search)
 		const class_id= urlParams.get('class_id')
 
-		await api.delete(`class-by-id/${class_id}`).then( () => {
+		await httpService.delete(`class-by-id/${class_id}`).then( () => {
 			history.push('/my-classes')
 			alert('Aula deletada com sucesso')
 		})
@@ -70,12 +70,12 @@ function EditDeleteClass() {
 		}		
 
 		schedule_idsToRemove.map( async item => {
-			await api.delete(`remove-schedule-time/${item.schedule_id}`).then( () => {
+			await httpService.delete(`remove-schedule-time/${item.schedule_id}`).then( () => {
 				return
 			})
 		})
 
-		await api.post(`classes-update/${class_id}`, {
+		await httpService.put(`classes-update/${class_id}`, {
 			subject,
 			cost,
 			scheduleItems
@@ -104,7 +104,7 @@ function EditDeleteClass() {
 		const class_id= urlParams.get('class_id')
 
 		async function getClassById() {
-			await api.get(`class-by-id/${class_id}`).then( res => {
+			await httpService.get(`class-by-id/${class_id}`).then( res => {
 				
 				setSubject(res.data.subject)
 				setCost(res.data.cost)
@@ -189,8 +189,8 @@ function EditDeleteClass() {
 
 						{ Boolean(scheduleItems.length) && scheduleItems.map((scheduleItem, index) => {
 							return (
-								<div>
-									<div key={scheduleItem.week_day} className="schedule-item">
+								<div key={scheduleItem.week_day}>
+									<div  className="schedule-item">
 										<Select
 											name="week_day"
 											label="Dia da Semana"

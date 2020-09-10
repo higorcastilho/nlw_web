@@ -10,8 +10,6 @@ import Select from '../../components/Select'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-//import api from '../../services/api'
-
 import './styles.css'
 
 function TeacherList() { 
@@ -84,22 +82,25 @@ function TeacherList() {
 		setXPos(xPos)
 		setYPos(yPos)
 
-		if (subject === '' || week_day === '' || time === '' ) {
+		async function showAllTeachers() {
+			if (subject === '' || week_day === '' || time === '' ) {
 
-			const data = handleShowAllTeachers(page, limit, 0)
-			data.then( res => {
-				try {
-					
-					setTeachers(res)
-					setTotalClasses(res[0].total)
-				} catch (e) {
-					console.log(e)
-					console.log('Nenhum professor encontrado')
-				}
-			})
+				await handleShowAllTeachers(page, limit, 0).then( res => {
+					try {
+						
+						setTeachers(res)
+						setTotalClasses(res[0].total)
+					} catch (e) {
+						console.log(e)
+						console.log('Nenhum professor encontrado')
+					}
+				})
+			}
 		}
 
-	}, [page]) // eslint-disable-line react-hooks/exhaustive-deps
+		showAllTeachers()
+
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<div id="page-teacher-list" className="container">
@@ -173,7 +174,7 @@ function TeacherList() {
 			</div>
 
 			<main>
-				{teachers && teachers.map((teacher: Teacher, index: number) => {
+				{(teachers[0].account_id > 0) && teachers.map((teacher: Teacher, index: number) => {
 					return <TeacherItem key={index} teacher={teacher} />
 				})}
 			</main>

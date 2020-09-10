@@ -2,7 +2,7 @@ import React, { useState, FormEvent, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
-import api from '../../services/api'
+import httpService from '../../services/http'
 
 
 import Input from '../../components/Input'
@@ -50,7 +50,7 @@ function ChangePassword() {
 		
 		try {
 
-			await api.post('change-password', {
+			await httpService.post('change-password', {
 				email,
 				currentPassword,
 				newPassword

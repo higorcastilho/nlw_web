@@ -1,4 +1,4 @@
-import api from '../services/api'
+import httpService from '../services/http'
 //import jwtDecode from '../services/jwtDecode'
 import { login } from '../services/auth'
 
@@ -8,7 +8,7 @@ interface Response {
 
 export default function handleLogin(email:string, password:string):Promise<Response> {
 	return new Promise( resolve => {
-		api.post('login', {
+		httpService.post('login', {
 			email, 
 			password
 		}).then( res => {

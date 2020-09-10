@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import Input from '../../components/Input'
 import CommonCase from '../../components/CommonCase'
 
-import api from '../../services/api'
+import httpService from '../../services/http'
 
 import './styles.css'
 import logoImg from '../../assets/images/logo.svg'
@@ -34,7 +34,7 @@ function Register() {
 
 	function handleShootRegister(e: FormEvent) {
 		e.preventDefault()
-		api.post('accounts', {
+		httpService.post('accounts', {
 
 			firstName,
 			lastName,

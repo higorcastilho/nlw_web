@@ -15,7 +15,7 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.svg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons"
 
-import api from '../../services/api'
+import httpService from '../../services/http'
 import jwtDecode from '../../services/jwtDecode'
 import { isAuthenticated, getToken } from '../../services/auth'
 
@@ -66,7 +66,7 @@ function Profile() {
 
 		if (isAuth) {
 			const accountId = jwtDecode(token)
-			await api.post(`accounts-user/${accountId}`, {
+			await httpService.put(`accounts-user/${accountId}`, {
 				name,
 				avatar,
 				whatsapp,
@@ -89,7 +89,7 @@ function Profile() {
 
 		if (isAuth) {
 			const accountId = jwtDecode(token)
-			await api.post(`accounts/${accountId}`, {
+			await httpService.put(`accounts/${accountId}`, {
 				firstName,
 				lastName,
 				email

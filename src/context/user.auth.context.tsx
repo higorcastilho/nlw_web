@@ -1,4 +1,4 @@
-import api from '../services/api'
+import httpService from '../services/http'
 import jwtDecode from '../services/jwtDecode'
 import { isAuthenticated, getToken } from '../services/auth'
 
@@ -24,7 +24,7 @@ export default function handleUser():Promise<Response> {
 			const token = JSON.stringify(getToken() ? getToken() : '')
 			const accountId = jwtDecode(token)
 
-			api.get(`accounts/${accountId}`).then( res => {
+			httpService.get(`accounts/${accountId}`).then( res => {
 
 				const userId = res.data.data[0].id
 				const name = res.data.data[0].attributes.name  

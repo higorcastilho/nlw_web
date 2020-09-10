@@ -11,7 +11,7 @@ import rocket from '../../assets/images/icons/rocket.svg'
 
 import './styles.css'
 
-import api from '../../services/api'
+import httpService from '../../services/http'
 
 function TeacherForm() {
 
@@ -43,7 +43,7 @@ function TeacherForm() {
 
 	async function handleCreateClass(id: number) {
 
-		await api.post(`classes/${id}`, {
+		await httpService.post(`classes/${id}`, {
 			subject,
 			cost: Number(cost),
 			schedule: scheduleItems

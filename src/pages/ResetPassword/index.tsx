@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import Input from '../../components/Input'
 import CommonCase from '../../components/CommonCase'
 
-import api from '../../services/api'
+import httpService from '../../services/http'
 
 import './styles.css'
 import logoImg from '../../assets/images/logo.svg'
@@ -34,7 +34,7 @@ function ResetPassword() {
 	async function handleShootResetPassword(e: FormEvent) {
 		e.preventDefault()
 
-		await api.post('reset-password', {
+		await httpService.put('reset-password', {
 
 			email,
 			password,

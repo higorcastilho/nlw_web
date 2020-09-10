@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
-import api from '../../services/api'
+import httpService from '../../services/http'
 
 import { Context } from '../../context/AuthContext'
 
@@ -42,14 +42,14 @@ function Landing() {
 		authorizedUser()
 		
 		async function handleGetConnections() {
-			await api.get('connections').then( res => {
+			await httpService.get('connections').then( res => {
 				const { total } = res.data
 				setTotalConnections(total)
 			})
 		}
 		handleGetConnections()
 
-	}, [userInfo, handleUserInfo, user.avatar, user.name]) // eslint-disable-line react-hooks/exhaustive-deps
+	}, [user.avatar]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	async function handleLogout() {
 		await logout()

@@ -1,7 +1,8 @@
 import React, { useState, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import api from '../../services/api'
+
+import httpService from '../../services/http'
 
 import Input from '../../components/Input'
 import CommonCase from '../../components/CommonCase'
@@ -33,7 +34,7 @@ function ForgotPassword() {
 	async function handleForgotPassword(e: FormEvent) {
 		e.preventDefault()
 		
-		await api.post('forgot-password', {
+		await httpService.post('forgot-password', {
 			email
 		})
 		history.push('/reset-password')

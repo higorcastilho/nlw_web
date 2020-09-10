@@ -1,6 +1,7 @@
-import api from '../services/api'
+import httpService from '../services/http'
 
 interface TeacherResponse {
+	account_id: number
 	name: string
 	avatar: string
 	bio: string
@@ -21,7 +22,7 @@ interface ScheduleItem {
 
 const showSchedules = ():Promise<ScheduleItem[]> => {
 	return new Promise( (resolve) => {
-		api.get('classes-schedules').then( (res) => {
+		httpService.get('classes-schedules').then( (res) => {
 			resolve(res.data)
 		})
 	})
@@ -31,7 +32,7 @@ const showTeachers = (page: number, limit: number, account_id: number):Promise<T
 
 	return new Promise( (resolve) => {
 
-			api.get(`classes/${account_id}`, {
+			httpService.get(`classes/${account_id}`, {
 				params: {
 					page, 
 					limit
@@ -43,6 +44,7 @@ const showTeachers = (page: number, limit: number, account_id: number):Promise<T
 					const schedules:any[] = []
 
 					return {
+						account_id: teacherResponse.account_id,
 						name: teacherResponse.name,
 						avatar: teacherResponse.avatar,
 						bio: teacherResponse.bio,
