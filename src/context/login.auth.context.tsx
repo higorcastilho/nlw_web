@@ -11,7 +11,7 @@ export default function handleLogin(email:string, password:string):Promise<Respo
 		httpService.post('login', {
 			email, 
 			password
-		}).then( res => {
+		}).then( async res => {
 			const token = res.data.token
 			//const userId = jwtDecode(token) commented to deploy
 
@@ -19,8 +19,7 @@ export default function handleLogin(email:string, password:string):Promise<Respo
 				throw new Error('Invalid token');
 			}
 
-			login(token)
-
+			await login(token)
 			resolve({ signed: true })
 			
 		}).catch( err => {

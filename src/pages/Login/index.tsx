@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Context } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 
+import handleLoginFromContext from '../../context/login.auth.context'
+
 import Input from '../../components/Input'
 import CommonCase from '../../components/CommonCase'
 
@@ -45,7 +47,10 @@ function Login() {
 		e.preventDefault()
 
 		await signIn(email, password)
-		if (authenticated) {
+
+		const { signed } = await handleLoginFromContext(email, password)
+
+		if ( signed || authenticated) {
 			history.push('/')
 		} else {
 			console.log('Senha ou e-mail invalido.')

@@ -60,13 +60,11 @@ function TeacherList() {
 		setPage(page + 1)
 	}
 
-	function searchTeachers() {
-		const data = handleSearchTeachers(subject, week_day, time, page, limit)
-		data.then( res => {
-			console.log(res)
+	async function searchTeachers() {
+		await handleSearchTeachers(subject, week_day, time, page, limit).then( res => {
 			try {
-				setTeachers(res)
 				setTotalClasses(res[0].total)
+				setTeachers(res)
 			} catch (e) {
 				console.log(e)
 				console.log('Nenhum professor encontrado')
@@ -99,16 +97,22 @@ function TeacherList() {
 			}
 		}
 
-		showAllTeachers()
+		if (!subject || !week_day || !time) {
+			showAllTeachers()
+		} else {
+			searchTeachers()
+		}
 
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+
+	}, [page]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<div id="page-teacher-list" className="container">
 			<PageHeader title="Estes são os proffys disponíveis.">
 				<form id="search-teachers" onSubmit={ (e:FormEvent) => {
 					e.preventDefault()
-
+					setPage(1)
 					searchTeachers()
 					} 
 				}>
