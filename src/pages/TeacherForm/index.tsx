@@ -50,8 +50,8 @@ function TeacherForm() {
 		}).then(() => {
 			alert('Cadastro realizado com sucesso!')
 		}).catch(e => {
-			alert('Erro ao cadastrar')
 			console.log(e)
+			//alert('Erro ao cadastrar')
 		})
 	}
 
