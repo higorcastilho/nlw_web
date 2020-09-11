@@ -18,9 +18,9 @@ export const authHeader = function() {
 
 
 export default {
-	get(url: string, header = {}, absolute = false) {
+	get(url: string, queryParams = {}, header = {}, absolute = false) {
 		url = absolute ? url : baseURL(url)
-		return Axios.get(url, { headers: Object.assign(header, authHeader()) })
+		return Axios.get(url, { headers: Object.assign(header, authHeader()), params: queryParams })
 	},
 	post(url: string, data: any, header = {}, absolute = false) {
 		url = absolute ? url : baseURL(url)

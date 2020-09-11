@@ -23,7 +23,8 @@ function TeacherList() {
 		name: '',
 		subject: '',
 		whatsapp: '',
-		schedules: []
+		schedules: [],
+		total: 0
 		}
 	])
 
@@ -62,6 +63,7 @@ function TeacherList() {
 	function searchTeachers() {
 		const data = handleSearchTeachers(subject, week_day, time, page, limit)
 		data.then( res => {
+			console.log(res)
 			try {
 				setTeachers(res)
 				setTotalClasses(res[0].total)
@@ -87,7 +89,6 @@ function TeacherList() {
 
 				await handleShowAllTeachers(page, limit, 0).then( res => {
 					try {
-						
 						setTeachers(res)
 						setTotalClasses(res[0].total)
 					} catch (e) {
@@ -135,13 +136,13 @@ function TeacherList() {
 						value= {week_day}
 						onChange = { e => { setWeekDay(e.target.value) }}
 						options={[
-							{ value: '0', label: 'Domingo' },
-							{ value: '1', label: 'Segunda-feira' },
-							{ value: '2', label: 'Terça-feira' },
-							{ value: '3', label: 'Quarta-feira' },
-							{ value: '4', label: 'Quinta-feira' },
-							{ value: '5', label: 'Sexta-feira' },
-							{ value: '6', label: 'Sábado' },
+							{ value: '6', label: 'Domingo' },
+							{ value: '0', label: 'Segunda-feira' },
+							{ value: '1', label: 'Terça-feira' },
+							{ value: '2', label: 'Quarta-feira' },
+							{ value: '3', label: 'Quinta-feira' },
+							{ value: '4', label: 'Sexta-feira' },
+							{ value: '5', label: 'Sábado' },
 						]} 
 					/>
 					<Input
@@ -174,7 +175,7 @@ function TeacherList() {
 			</div>
 
 			<main>
-				{(teachers[0].account_id > 0) && teachers.map((teacher: Teacher, index: number) => {
+				{(teachers[0].total > 0) && teachers.map((teacher: Teacher, index: number) => {
 					return <TeacherItem key={index} teacher={teacher} />
 				})}
 			</main>

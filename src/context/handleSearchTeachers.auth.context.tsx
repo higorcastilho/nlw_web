@@ -7,7 +7,7 @@ interface TeacherResponse {
 	cost: number
 	subject: string
 	whatsapp: string
-	classIdPrimary: number
+	id_class_primary: number
 	schedules: any[]
 	total: number
 }
@@ -31,14 +31,12 @@ const showTeachers = (subject: string, week_day: number | string, time: string, 
 
 	return new Promise( (resolve) => {
 
-			httpService.get('classes', {
-				params: {
+			httpService.get('classes/0', {
 					subject,
 					week_day,
 					time,
 					page, 
 					limit
-				}
 			}).then( (res) => {
 				
 				const teachersResponse = res.data.results.map( (teacherResponse: TeacherResponse) => {
@@ -52,7 +50,7 @@ const showTeachers = (subject: string, week_day: number | string, time: string, 
 						cost: teacherResponse.cost,
 						subject: teacherResponse.subject,
 						whatsapp: teacherResponse.whatsapp,
-						classIdPrimary: teacherResponse.classIdPrimary,
+						id_class_primary: teacherResponse.id_class_primary,
 						schedules: schedules,
 						total: res.data.total
 					}
@@ -74,7 +72,7 @@ export default async function searchTeachers(subject: string, week_day: number |
 		
 		teachers.map( (teacher: TeacherResponse) => {
 			schedules.map( (scheduleItem: ScheduleItem) => {
-				if (scheduleItem.class_id === teacher.classIdPrimary) {
+				if (scheduleItem.class_id === teacher.id_class_primary) {
 					teacher.schedules.push(scheduleItem)
 				}
 				return ''

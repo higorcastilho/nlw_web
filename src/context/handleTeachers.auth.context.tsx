@@ -33,10 +33,8 @@ const showTeachers = (page: number, limit: number, account_id: number):Promise<T
 	return new Promise( (resolve) => {
 
 			httpService.get(`classes/${account_id}`, {
-				params: {
-					page, 
-					limit
-				}
+				page, 
+				limit
 			}).then( (res) => {
 				
 				const teachersResponse = res.data.results.map( (teacherResponse: TeacherResponse) => {
