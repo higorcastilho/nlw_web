@@ -33,9 +33,7 @@ function ResetPassword() {
 
 	async function handleShootResetPassword(e: FormEvent) {
 		e.preventDefault()
-
 		await httpService.put('reset-password', {
-
 			email,
 			password,
 			token	
@@ -43,6 +41,8 @@ function ResetPassword() {
 			history.push('/login')
 			alert('Redefinição realizada com sucesso!')
 
+		}).catch( e => {
+			console.log(e.message)
 		})
 
 	}
