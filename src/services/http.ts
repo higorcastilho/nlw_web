@@ -3,7 +3,7 @@ import { getToken } from './auth'
 import config from '../config'
 
 export const baseURL = function(url: string) {
-	return config.API_HOST_DEV + ( url.startsWith('/') ? url : `/${url}` )
+	return config.API_HOST + ( url.startsWith('/') ? url : `/${url}` )
 }
 
 export const authHeader = function() {
