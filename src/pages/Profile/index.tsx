@@ -25,10 +25,12 @@ function Profile() {
 
 	const history = useHistory()
 
-	const { user, handleUserInfo } = useContext(Context)
+	const { user, handleUserInfo, handleShowAllTeachers } = useContext(Context)
 
 	const [ toggleModal, setToggleModal ] = useState('none')
 	const [ showPage, setShowPage ] = useState('')
+
+	const [userSubjects, setUserSubjects] = useState([''])
 
 	//const [ userId, setUserId ] = useState(0)
 	const [ name, setName ] = useState('')
@@ -41,6 +43,19 @@ function Profile() {
 	const [ email, setEmail ] = useState('')
 
 	useEffect(() => {
+
+		const getUserSubjects = handleShowAllTeachers(1, 100, user.account_id)
+		getUserSubjects.then( res => {
+			if (res.length < 1) {
+				console.log("Nenhuma matéria encontrada.")
+				setUserSubjects([''])
+				return
+			}
+			const subjects:string[] = res.map(item => {
+				return item.subject
+			})
+			setUserSubjects(subjects)
+		})
 	
 		async function authorizedUser() {
 			await handleUserInfo()
@@ -163,7 +178,12 @@ function Profile() {
 					/>
 				</div>
 				<p>{name}</p>
-				<legend>Matemática - Biologia - Química</legend>
+				{ (userSubjects[0] === '') && <legend></legend> }
+				{ (userSubjects[0] !== '') && <legend> {userSubjects.reduce((accumulator:string, current:string) => {
+					const subjects = `${accumulator} ${current}`  
+					return subjects
+				}, '')} 
+				</legend>}
 			</header>
 			<main style={{display: showPage}}>
 				<form onSubmit={handleUpdateUser}>

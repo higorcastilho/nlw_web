@@ -24,7 +24,7 @@
 
 .teacher-profile-header {
 	text-align: center;
-	height: 39vh;
+	height: 42vh;
 	min-width: 50%;
 	background: var(--color-primary);
 	background-size: contain
@@ -63,10 +63,10 @@
 }
 
 .teacher-profile-header legend {
-	font: 2.4rem Poppins;
-	font-size: 1.4rem;
+	font: 100 1.3rem Poppins;
 	line-height: 3rem;
 	color: var(--color-title-in-primary);
+	padding: 0 1.4rem
 }
 
 .avatar-modal {

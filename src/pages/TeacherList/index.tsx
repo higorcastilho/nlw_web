@@ -62,13 +62,14 @@ function TeacherList() {
 
 	async function searchTeachers() {
 		await handleSearchTeachers(subject, week_day, time, page, limit).then( res => {
-			try {
-				setTotalClasses(res[0].total)
-				setTeachers(res)
-			} catch (e) {
-				console.log(e)
-				console.log('Nenhum professor encontrado')
+			if (res.length < 1) {
+				console.log('Nenhum professor foi encontrado na busca.')
+				setTeachers([])
+				return
 			}
+			setTotalClasses(res[0].total)
+			setTeachers(res)
+			return
 		})
 	}
 
@@ -86,13 +87,14 @@ function TeacherList() {
 			if (subject === '' || week_day === '' || time === '' ) {
 
 				await handleShowAllTeachers(page, limit, 0).then( res => {
-					try {
-						setTeachers(res)
-						setTotalClasses(res[0].total)
-					} catch (e) {
-						console.log(e)
-						console.log('Nenhum professor encontrado')
+					if (res.length < 1) {
+						console.log("Nenhum professor foi encontrado.")
+						setTeachers([])
+						return 
 					}
+					setTeachers(res)
+					setTotalClasses(res[0].total)
+					return 
 				})
 			}
 		}
@@ -163,7 +165,7 @@ function TeacherList() {
 				</form>
 			</PageHeader>
 
-			<div className="pagination-container">
+			{ (teachers.length > 0) && <div className="pagination-container">
 				<FontAwesomeIcon
 					icon={faChevronLeft}
 					className="pagination-left-button"
@@ -176,14 +178,20 @@ function TeacherList() {
 					onClick={handleNextButton}
 				/>
 
-			</div>
+			</div> }
 
 			<main>
-				{(teachers[0].total > 0) && teachers.map((teacher: Teacher, index: number) => {
+				{(teachers.length > 0) && teachers.map((teacher: Teacher, index: number) => {
 					return <TeacherItem key={index} teacher={teacher} />
 				})}
+
+				{ !(teachers.length > 0) && <div id ="teachers-not-found">
+						<p>Nenhum professor foi encontrado :(</p>
+					</div>
+				}
 			</main>
-			<div id="footer-pagination-buttons" className="pagination-container">
+
+			{ (teachers.length > 0) && <div id="footer-pagination-buttons" className="pagination-container">
 				<FontAwesomeIcon
 					icon={faChevronLeft}
 					className="pagination-left-button"
@@ -196,7 +204,7 @@ function TeacherList() {
 					onClick={handleNextButton}
 				/>
 
-			</div>
+			</div> }
 		</div>
 	)
 }
